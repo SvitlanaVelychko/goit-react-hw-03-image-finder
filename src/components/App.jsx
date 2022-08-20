@@ -3,7 +3,9 @@ import { Box } from "./Box";
 import { GlobalStyle } from "./GlobalStyle";
 import { fetchImages } from "services/api";
 import Searchbar from "./SearchBar";
+import Loader from "./Loader";
 import ImageGallery from "./ImageGallery";
+import Button from "./Button";
 
 export class App extends Component {
   state = {
@@ -23,14 +25,15 @@ export class App extends Component {
       if (prevPage !== currentPage || prevQuery !== currentQuery) {
         this.setState({ status: 'pending' });
         const data = await fetchImages(currentQuery, currentPage);
+        const { hits, total } = data;
 
-        if (data.total === 0 || (data.hits.length === 0 && data.hits.totalHits > 0)) {
+        if (total === 0 || (hits.length === 0 && hits.totalHits > 0)) {
           this.setState({ status: 'idle' });
           return;
         }
           this.setState({ status: 'resolved' });
           this.setState(prevState => ({
-          hits: [...prevState.hits, ...data.hits]
+          hits: [...prevState.hits, ...hits]
           }));
           return;
         }
@@ -40,12 +43,10 @@ export class App extends Component {
     }
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
-
+  formSubmit = query => {
     this.setState({
       page: 1,
-      query: e.target.elements.query.value.trim().toLowerCase(),
+      query: query,
       hits: [],
       status: 'idle',
     });
@@ -60,12 +61,17 @@ export class App extends Component {
   render() {
     const { hits, status } = this.state;
     return (
-      <Box>
+      <Box
+        display="grid"
+        gridTemplateColumns="1fr"
+        gridGap="16px"
+        pb="24px">
         <GlobalStyle />
-        <Searchbar onSubmit={this.handleSubmit} />
-        {hits.length > 0 && <ImageGallery hits={hits}/>}
+        <Searchbar onSubmit={this.formSubmit} />
+        {hits.length > 0 && <ImageGallery hits={hits} />}
+        {status === 'panding' && <Loader />}
         {status === 'resolved' && hits.length % 12 === 0 && hits.length !== 0 && 
-        <button type="button" onClick={this.loadMoreClick}>Load more</button>}
+        <Button onClick={this.loadMoreClick} />}
       </Box>
     );
   }

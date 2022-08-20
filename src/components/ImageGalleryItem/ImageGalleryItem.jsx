@@ -1,11 +1,11 @@
 import { Component } from "react";
+import PropTypes from 'prop-types';
 import Modal from "../Modal";
 import { ImageItem, ImageItemCard } from "./ImageGalleryItem.styled";
 
 export default class ImageGalleryItem extends Component {
     state = {
         isModalOpen: false,
-
     };
 
     openModal = () => this.setState({ isModalOpen: true });
@@ -21,4 +21,9 @@ export default class ImageGalleryItem extends Component {
             </ImageItem>
         );
     }
+};
+
+ImageGalleryItem.propTypes = {
+    hits: PropTypes.array,
+    isModal: PropTypes.bool,
 };
