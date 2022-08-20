@@ -2,12 +2,9 @@ export const theme = {
     colors: {
         black: '#000',
         white: '#fff',
-        text: '#006400',
-        bgc: '#c8ffa8',
-        accent: '#ef0119',
-        bgcButton: '#32CD32',
-        bgcStat: '#FFFFE0',
-        delBtn: '#edb9b9',
+        bgc: '#3f51b5',
+        bgcBtn: '#3f51b5',
+        bgcBtnHover: '#303f9f',
     },
     space: [0, 2, 4, 8, 16, 32, 64, 128, 256],
     fonts: {

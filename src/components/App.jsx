@@ -1,4 +1,6 @@
 import { Component } from "react";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Box } from "./Box";
 import { GlobalStyle } from "./GlobalStyle";
 import { fetchImages } from "services/api";
@@ -67,9 +69,17 @@ export class App extends Component {
         gridGap="16px"
         pb="24px">
         <GlobalStyle />
+        <ToastContainer
+          position="top-right"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          theme={"colored"}
+        />
         <Searchbar onSubmit={this.formSubmit} />
         {hits.length > 0 && <ImageGallery hits={hits} />}
-        {status === 'panding' && <Loader />}
+        {status === 'pending' && <Loader />}
         {status === 'resolved' && hits.length % 12 === 0 && hits.length !== 0 && 
         <Button onClick={this.loadMoreClick} />}
       </Box>

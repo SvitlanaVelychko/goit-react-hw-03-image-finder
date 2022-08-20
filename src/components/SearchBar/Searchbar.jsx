@@ -1,10 +1,11 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
+import { SearchIcon } from '@primer/octicons-react';
+import { toast } from 'react-toastify';
 import {
     SearchbarContainer,
     SearchForm,
     SearchFormButton,
-    SearchFormButtonLabel,
     SearchFormInput
 } from "./Searchbar.styled";
 
@@ -25,7 +26,7 @@ export default class Searchbar extends Component {
         const { onSubmit } = this.props;
 
         if (query.trim() === '') {
-            return ('Please, write word in search line.')
+            toast.error('Please, write word in search line.');
         } else {
             onSubmit(query);
             this.setState({
@@ -41,7 +42,7 @@ export default class Searchbar extends Component {
             <SearchbarContainer>
                 <SearchForm onSubmit={this.handleSubmit}>
                     <SearchFormButton type="submit">
-                        <SearchFormButtonLabel>Search</SearchFormButtonLabel>
+                        <SearchIcon size={24} />
                     </SearchFormButton>
                     <SearchFormInput
                         type="text"

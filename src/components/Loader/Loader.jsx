@@ -1,17 +1,14 @@
 import { ThreeDots } from 'react-loader-spinner';
-import { Box } from '../Box';
+import { Box } from 'components/Box';
 
 const Loader = () => {
     return (
-        <Box display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center" alignItems="center">
             <ThreeDots
                 height="80"
                 width="80"
-                radius="9"
-                color='green'
-                ariaLabel='three-dots-loading'
-                wrapperStyle
-                wrapperClass
+                color="blue"
+                ariaLabel = 'three-dots-loading'
             />
         </Box>
     );
