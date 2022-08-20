@@ -3,18 +3,18 @@ import styled from "styled-components";
 export const ButtonLoadMore = styled.button`
     padding: 8px 16px;
     margin: 20px auto;
-    border-radius: 2px;
-    background-color: #3f51b5;
+    border-radius: ${p => p.theme.radii.normal};
+    background-color: ${p => p.theme.colors.bgcBtn};
     transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     display: block;
-    color: #fff;
+    color: ${p => p.theme.colors.white};
     border: 0;
     text-decoration: none;
     cursor: pointer;
     font-family: inherit;
-    font-size: 18px;
-    line-height: 24px;
+    font-size: ${p => p.theme.fontSizes.m};
+    line-height: ${p => p.theme.fontSizes.l};
     font-style: normal;
     font-weight: 500;
     min-width: 180px;
@@ -23,6 +23,6 @@ export const ButtonLoadMore = styled.button`
 
     :hover,
     :focus {
-        background-color: #303f9f;
+        background-color: ${p => p.theme.colors.bgcBtnHover};
     }
 `;
