@@ -6,7 +6,7 @@ import {
     SearchFormInput
 } from "./Searchbar.styled";
 
-export const Searchbar = ({ onSubmit }) => {
+const Searchbar = ({ onSubmit }) => {
     return (
         <SearchbarContainer>
             <SearchForm onSubmit={onSubmit}>

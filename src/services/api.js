@@ -16,7 +16,15 @@ export const fetchImages = async (query, page) => {
         });
 
         const response = await axios.get(`?${searchParams}`);
-        return response.data;
+
+        if (response.data.totalHits === 0 || query === '') {
+            return ('Sorry, there are no images matching your search query. Please try again.');
+        } else if (response.data.hits.length % 12 !== 0 && response.data.totalHits > 0) {
+            return ("We're sorry, but you've reached the end of search results.")
+        } else {
+            return response.data;
+        }
+        
 
     } catch (error) {
         console.log(error);
